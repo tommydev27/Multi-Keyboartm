@@ -2105,8 +2105,10 @@ const percentLabel = document.getElementById("percent-value");
 const strikeLabel = document.getElementById("strike-value");
 
 function cleanText(text) {
-  return text.replace(/͟͞/g, '').replace(/\u0338/g, '');
+  // Hapus karakter efek lama (zero-width joiner & variation selector)
+  return text.replace(/\u200D/g, '').replace(/\uFE0F/g, '');
 }
+
 
 function applyEffects() {
   const glitchPercent = parseInt(caretSlider.value, 10);
@@ -2121,8 +2123,8 @@ function applyEffects() {
 
   textarea.value = chars.map((ch, i) => {
     let result = ch;
-    if (i < glitchLength) result += '͟͞';
-    if (i < strikeLength) result += '\u0338';
+    if (i < glitchLength) result += '‍';
+    if (i < strikeLength) result += '️';
     return result;
   }).join('');
 
