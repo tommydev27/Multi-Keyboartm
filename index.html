@@ -1016,37 +1016,6 @@ document.addEventListener('DOMContentLoaded', () => {
       <button class="key2" onclick="characterSymbols20()">⒠⒩⒞⒧⒪⒮⒠</button>
 </div>
 
-<script>
-function animateScroll(el, from, to, duration, callback) {
-  const distance = to - from;
-  const startTime = performance.now();
-
-  function step(now) {
-    const progress = Math.min((now - startTime) / duration, 1);
-    el.scrollLeft = from + distance * progress;
-    if (progress < 1) {
-      requestAnimationFrame(step);
-    } else {
-      el.scrollLeft = to;
-      if (callback) callback();
-    }
-  }
-
-  requestAnimationFrame(step);
-}
-
-window.addEventListener("load", () => {
-  const firstButton = document.querySelector('.key2');
-  if (firstButton && firstButton.parentElement) {
-    const container = firstButton.parentElement;
-    animateScroll(container, 0, container.scrollWidth - container.clientWidth, 100, () => {
-      setTimeout(() => {
-        animateScroll(container, container.scrollWidth - container.clientWidth, 0, 200);
-      }, 100); // scroll balik sekali
-    });
-  }
-});
-</script>
 
 
 <div class="fixed-button" style="flex-shrink:0;position:sticky;right:0;padding-left:10px; ">
