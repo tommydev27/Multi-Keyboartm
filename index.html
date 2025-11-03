@@ -1104,6 +1104,43 @@ window.addEventListener("load", () => {
     <button class="key-btn" onclick="insertText('\n')"><span class="enter-icon">↲</span></button>
   </div>
 </div>
+  <div style="border-top:1px solid #ccc;">
+<footer style="padding:10px 0px;font-family:Arial,sans-serif; margin-top:10px;">
+  <div style="max-width:1100px;margin:auto;display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;">
+    
+    <div>
+      <h3 style="margin:0;">Tommy <span style="color:#00a6d8;">v0.2.7</span></h3>
+      <p style="font-size:14px;margin-top:5px;">Solusi digital yang simpel, cepat, dan elegan.</p>
+    </div>
+    
+    <div>
+      <h3 style="margin-bottom:5px;">Halaman</h3>
+      <a href="#" style="display:block;text-decoration:none;margin-bottom:5px;">Beranda</a>
+      <a href="#" style="display:block;text-decoration:none;margin-bottom:5px;">Tentang Kami</a>
+      <a href="#" style="display:block;text-decoration:none;margin-bottom:5px;">Layanan</a>
+      <a href="#" style="display:block;text-decoration:none;">Kontak</a>
+    </div>
+    
+    <div>
+      <h3 style="color:#00a6d8;margin-bottom:8px;">Legal</h3>
+      <a href="#" style="display:block;text-decoration:none;margin-bottom:5px;">Kebijakan Privasi</a>
+      <a href="#" style="display:block;text-decoration:none;margin-bottom:5px;">Syarat & Ketentuan</a>
+      <a href="#" style="display:block;text-decoration:none;">Cookie Policy</a>
+    </div>
+    
+    <div>
+      <h3 style="color:#00a6d8margin-bottom:8px;">Ikuti Kami</h3>
+      <a href="#" style="margin-right:8px;text-decoration:none;">Facebook</a>
+      <a href="#" style="margin-right:8px;text-decoration:none;">Twitter</a>
+      <a href="#" style="margin-right:8px;text-decoration:none;">Instagram</a>
+      <a href="#" style="text-decoration:none;">GitHub</a>
+    </div>
+  </div>
+  
+  <div style="text-align:center;border-top:1px solid #222;margin-top:30px;padding-top:15px;font-size:14px;color:#888;">
+    © 2025 Tommy v0.2.7 — Semua hak cipta dilindungi.
+  </div>
+</footer>
 
 <script>
   let isLayoutOne = true;
@@ -2014,83 +2051,6 @@ document.addEventListener("click", function (e) {
   }
 });
 
-
-
-
-// Scroll ke kanan, lalu kembali ke kiri
-function scrollToEnd(el, duration = 50) {
-  animateScroll(el, el.scrollLeft, el.scrollWidth - el.clientWidth, duration, () => {
-    setTimeout(() => scrollToStart(el, 10), 50);
-  });
-}
-
-function scrollToStart(el, duration = 50) {
-  animateScroll(el, el.scrollLeft, 0, duration);
-}
-
-function animateScroll(el, from, to, duration, callback) {
-  const distance = to - from;
-  const startTime = performance.now();
-
-  function step(now) {
-    const progress = Math.min((now - startTime) / duration, 1);
-    el.scrollLeft = from + distance * progress;
-    if (progress < 1) {
-      requestAnimationFrame(step);
-    } else {
-      el.scrollLeft = to;
-      if (callback) callback();
-    }
-  }
-
-  requestAnimationFrame(step);
-}
-
-window.addEventListener("load", () => {
-  const bar = document.getElementById("symbol-bar");
-  if (bar) {
-    setTimeout(() => {
-      bar.scrollLeft = 0;
-      scrollToEnd(bar);
-    }, 10);
-  }
-});
-
-// Tombol tengah otomatis klik
-const symbolBar = document.getElementById("symbol-bar");
-const buttons = symbolBar.querySelectorAll("button");
-
-function getCenterButton() {
-  const barRect = symbolBar.getBoundingClientRect();
-  const centerX = barRect.left + barRect.width / 2;
-
-  let closestBtn = null;
-  let closestDist = Infinity;
-
-  buttons.forEach(btn => {
-    const btnCenter = btn.getBoundingClientRect().left + btn.offsetWidth / 2;
-    const dist = Math.abs(centerX - btnCenter);
-    if (dist < closestDist) {
-      closestDist = dist;
-      closestBtn = btn;
-    }
-  });
-
-  return closestBtn;
-}
-
-let lastActiveButton = null;
-
-symbolBar.addEventListener("scroll", () => {
-  clearTimeout(symbolBar._scrollTimer);
-  symbolBar._scrollTimer = setTimeout(() => {
-    const activeBtn = getCenterButton();
-    if (activeBtn && activeBtn !== lastActiveButton) {
-      lastActiveButton = activeBtn;
-      
-    }
-  }, 100);
-});
 
 // Dropdown untuk klik tombol
 document.getElementById("block-select").addEventListener("change", (e) => {
