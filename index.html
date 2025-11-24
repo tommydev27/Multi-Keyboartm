@@ -14,15 +14,16 @@
     
     <title>Tommy Website</title>
         <link rel="stylesheet" href="https://static.xx.fbcdn.net/rsrc.php/v5/y2/l/0,cross/nC2XYYUISfm.css" crossorigin="anonymous">
-    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+
     <link href="https://static.xx.fbcdn.net/rsrc.php/v5/yT/l/0,cross/RYoQlJMNiM3.css" rel="stylesheet" crossorigin="anonymous">
 <link href="https://static.xx.fbcdn.net/rsrc.php/v5/yv/l/0,cross/VraZqV-tU8r.css" rel="stylesheet" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://static.xx.fbcdn.net/rsrc.php/v5/y2/l/0,cross/qVai514D-Du.css" rel="stylesheet" crossorigin="anonymous"><link href="https://static.xx.fbcdn.net/rsrc.php/v5/yk/l/0,cross/r5J_VEmEoGr.css" rel="stylesheet" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
  <style>
  
   body {
-    font-family: Questrial, sans-serif;
+    font-family: normal;
       margin: 10px;
       display: flex;
     background:rgba(24,119,242,0.114);
@@ -68,7 +69,7 @@
   #notes, .native-text {
     position: absolute; 
     width: 100%;
-    font-family: 'Questrial', sans-serif;
+    font-family: normal;
     height: 200px;
     border: 0.1px solid rgba(29,124,247,0.305);
     border-radius: 10px;
@@ -846,20 +847,36 @@ document.addEventListener('DOMContentLoaded', () => {
   const target = document.querySelector('.native-text');
   let isVisible = false;
 
-  btn.addEventListener('click', () => {
+  const toggleView = () => {
     if (!isVisible) {
       const text = txt.value.trim();
       if (!text) return alert('Tulis sesuatu dulu.');
       target.textContent = text;
       target.classList.add('show');
-      txt.style.opacity = 0; // sembunyikan textarea
+      txt.style.opacity = 0;
       isVisible = true;
       btn.textContent = 'TUTUP';
     } else {
       target.classList.remove('show');
-      setTimeout(() => { txt.style.opacity = 1; }, 300); 
+      setTimeout(() => { txt.style.opacity = 1; }, 300);
       isVisible = false;
       btn.textContent = 'POST';
+    }
+  };
+
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation(); // agar klik tombol tidak dianggap klik luar
+    toggleView();
+  });
+
+  // 🔥 Menutup ketika klik di luar elemen
+  document.addEventListener('click', (e) => {
+    if (isVisible) {
+      const clickInsideTarget = target.contains(e.target);
+      const clickInsideBtn = btn.contains(e.target);
+      if (!clickInsideTarget && !clickInsideBtn) {
+        toggleView();
+      }
     }
   });
 });
@@ -1286,7 +1303,7 @@ const styledChars11_asdf = ['🅐','🅢','🅓','🅕','🅖','🅗','🅙','�
 const styledChars11_zxcv = ['🅩','🅧','🅒','🅥','🅑','🅝','🅜'];
 
 
-const styledChars12_qwerty = ['🅀','🅆','🄴','🅁','🅃','🅈','🅄','🅈','🄾','🄿'];
+const styledChars12_qwerty = ['🅀','🅆','🄴','🅁','🅃','🅈','🅄','🄸','🄾','🄿'];
 const styledChars12_asdf = ['🄰','🅂','🄳','🄵','🄶','🄷','🄹','🄺','🄻'];
 const styledChars12_zxcv = ['🅉','🅇','🄲','🅅','🄱','🄽','🄼'];
 const styledChars12Upper_qwerty = styledChars12_qwerty;
