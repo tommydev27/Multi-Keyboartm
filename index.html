@@ -436,23 +436,23 @@
     
       .styled-slider {
         width: 100%;
-        height: 12px;
+        height: 10px;
         -webkit-appearance: none;
         background: transparent;
       }
     
       .styled-slider::-webkit-slider-runnable-track {
-        height: 5px;
+        height: 4px;
         border-radius: 34px;
-        background: #56defb;
+        background: #568afb;
         border: 1px solid #ccc;
       }
       
   
      .styled-slider::-webkit-slider-thumb {
         -webkit-appearance: none;
-        width: 14px;
-        height: 14px;
+        width: 12px;
+        height: 12px;
         background: #fff;
         border-radius: 50%;
         margin-left: -2px;
@@ -498,9 +498,7 @@
       .tambahan-container {
         display: flex;
         overflow-x: auto;
-        gap: 6px;
-        padding: 2px;
-        margin: 5px 0;
+        padding: 5px;
         scroll-behavior: smooth;
         direction: ltr;
         
@@ -510,7 +508,7 @@
      .tambahan-container button {
         flex: 0 0 auto;
         color: #333;
-        padding:20px 20px;
+        padding:5px 20px;
         background: #fff;
         font-family: Questrial;
         height: 30px;
@@ -524,18 +522,18 @@
         transition: background-color 0.2s;
       }
       .toggle-btn{
-                background-color:
-                #a1ccfe;
+        background-color:#5ea3f3;
        border-radius:4px;
+       color:#fff;
       }
       .toggle-btn:hover,
       .tambahan-container button:hover {
-          background-color: #469bfe;
+          background-color: #0070f3;
           color: white;
       }
       
       .tambahan-container button span {
-        font-size: 20px;
+        font-size: 13px;
       }
       
       .button, a {
@@ -689,7 +687,7 @@
     
     .key2 {
       flex: 0 0 auto;
-      padding: 8px 12px;
+      padding: 4px 12px;
       margin: 0;
       font-size: 14px;
       background:#fff;
@@ -720,11 +718,11 @@
     .fixed-button button {
       font-size: 21px;
       padding: 0px 4px; 
-      color: #333;
-      padding: 10px 8px;
+      color: #fff;
+      padding: 6px 8px;
       margin: 0;
       font-size: 14px;
-background-color: #99c5f7;
+        background-color:#5ea3f3;
       border: 0.1px solid rgba(29,124,247,0.305);
       border-radius: 6px;
       outline: none;
@@ -761,11 +759,6 @@ background-color: #99c5f7;
 .fixed-button button:active {
   animation: blink-scale 1.1s ease-in-out 1;
 }
-
-
-
-
-
     
     .scroll-buttons {
       display: flex;
@@ -896,7 +889,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <div class="control-row">
     <button id="postBtn">POST</button>
-  <button id="copy-btn">⧉</button>
+  <button id="copy-btn"style="font-size:12px;">⧉</button>
   <button id="clear-btn" style="font-size:10px;">CLEAR</button>
 
   <button class="key-btn" onclick="undo()">↺</button>
@@ -907,16 +900,61 @@ document.addEventListener('DOMContentLoaded', () => {
         <option value="1F600-1F64F">UNICODE</option>
         </select>
      </div>
-        
+<div class="control-row">
+  <button class="key-btn" style="font-size: 10px;" onclick="hapusDuplikat()">Hapus Duplikat</button>
+  <button class="key-btn" style="font-size: 10px;"  onclick="hapusSpasi()">Hapus Spasi</button>
+  <button class="key-btn" style="font-size: 10px;"  onclick="beriSpasi()">Tambah Spasi</button>
+  <button class="key-btn" style="font-size: 10px;"  onclick="gandakanTeks()">Gandakan Teks</button>
+     </div>
+       <div class="control-row">
+    <button class="key-btn" style="font-size:10px;"onclick="insertText(' ')">space ␣</button>
+    <button class="key-btn" onclick="backspace()"><span class="backspace-icon">⌫</span></button>
+    <button class="key-btn" onclick="insertText('\n')"><span class="enter-icon">↲</span></button>
+  </div>
+  <script>
+    // Ambil referensi elemen
+    const input = document.getElementById("notes");
 
+    // 🔹 1. Hapus Duplikat
+    function hapusDuplikat() {
+      const teks = input.value;
+      let hasil = "";
+      for (const char of teks) {
+        if (!hasil.includes(char)) hasil += char;
+      }
+      input.value = hasil;
+    }
+
+    // 🔹 2. Hapus Spasi
+    function hapusSpasi() {
+      input.value = input.value.replace(/\s+/g, "");
+    }
+
+    // 🔹 3. Gandakan Teks
+    function gandakanTeks() {
+      const teks = input.value;
+      if (!teks.trim()) return;
+      const jumlah = prompt("Gandakan berapa kali?", "2");
+      const n = parseInt(jumlah);
+      if (!isNaN(n) && n > 0) {
+        input.value = teks.repeat(n);
+      }
+    }
+
+    // 🔹 4. Beri Spasi antar karakter
+    function beriSpasi() {
+      const teks = input.value;
+      input.value = Array.from(teks).join(" ");
+    }
+  </script>
 <div id="top-bar" style="display:flex; gap:5px; align-items:center;">
 <button id="toggle-btn" style="font-size:15px;" class="toggle-btn" onclick="toggleKeyboardLayout()">Ganti Mode</button>
 
 
-  <div id="symbol-bar" class="tambahan-container" style="display:flex; gap:5px;">
+  <div id="symbol-bar" class="tambahan-container" style=" gap:4px;">
     <button id="btn-block25">
       <span style="font-weight:bold;">Symbols</span>
-      <span style="font-weight:bold; font-size:22px;">&nbsp;㉿</span>
+      <span style="font-weight:bold; font-size:15px;">&nbsp;㉿</span>
         </button>
           <button id="btn-block114"><span>Greek Alphabet</span></button>
           <button id="btn-block111"><span>Arabic</span></button>
@@ -1082,13 +1120,9 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- Keyboard Layout 2 -->
 <div id="keyboard-layout-2" style="display: none;">
   <div id="container"></div>
-  <div class="control-row1">
-    <button class="key-btn" id="btn-block1019"><span class="native">Aa</span></button>
-    <button class="key-btn" id="btn-block1018"><span class="native">😃</span></button>
-    <button class="key-btn" onclick="insertText(' ')">⎵</button>
-    <button class="key-btn" onclick="backspace()"><span class="backspace-icon">⌫</span></button>
-    <button class="key-btn" onclick="insertText('\n')"><span class="enter-icon">↲</span></button>
-  </div>
+       <div class="control-row1">
+    <button class="key-btn" style="width:100%;font-size:15px;" id="btn-block1019"><span class="native">Teks Normal</span></button>
+    <button class="key-btn" style="width:100%; font-size:15px;" id="btn-block1018"><span class="native">Emoji 😃</span></button>
 </div>
   <div style="border-top:1px solid #ccc;">
 <footer style="padding:10px 0px;font-family:Arial,sans-serif; margin-top:10px;">
